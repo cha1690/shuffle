@@ -3,10 +3,9 @@
 
 <head>
     <title>VideoShuffle</title>
-{#    <link rel="icon" href="/static/img/play-button.png">#}
-{#    <link rel="stylesheet" href="/static/css/style.css">#}
-{#<!--            "{{ url_for('static', filename='css/style.css') }}">-->#}
-{#    <script src="/static/js/script.js"></script>#}
+    <link rel="icon" href="/static/img/play-button.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js"></script>
     <!--    <fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -45,8 +44,16 @@
 </nav>
 
 <div class="container-fluid p-0">
-        {%block content%}
-        {%endblock%}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                 </ul>
+            {% endif %}
+        {% endwith %}
+    {% block content %}{% endblock %}
 </div>
 
 </body>
