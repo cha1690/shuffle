@@ -59,6 +59,19 @@
                         {{ form.confirm_password(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+            <div class="form-check form-check-inline">
+                    {{ form.category.label(class="form-control-label") }}
+                    {% if form.category.errors %}
+                        {{ form.category(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.category.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.category(class="form-check-label") }}
+                    {% endif %}
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
