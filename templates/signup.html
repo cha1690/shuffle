@@ -3,6 +3,7 @@
 
     <div class="container-fluid p-4">
         <form method="POST" action="">
+            {{ form.csrf_token }}
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Sign Up!</legend>

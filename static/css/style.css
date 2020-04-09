@@ -5,10 +5,9 @@ hr {
   border: 1px solid black;
 }
 
- nav{
-   background: #212121;
-   color: rgba(255, 255, 255, 0.5);
- }
+ .navbar .dropdown-menu a:hover {
+    color: #616161 !important;
+}
 
  /*Jumbotron (hero)*/
 .jumbotron {

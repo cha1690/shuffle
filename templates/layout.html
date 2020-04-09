@@ -19,9 +19,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-toggleable-sm sticky-top">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="navbar-header">
-        <a href="{{ url_for('index') }}" class="navbar-brand mb-0">VideoShuffle</a>
+        <a href="{{ url_for('index') }}" class="navbar-brand mb-0">Shuffle</a>
     </div>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#headerNav" aria-controls="headerNav" aria-expanded="false"
@@ -29,30 +29,38 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div id="headerNav" class="collapse navbar-collapse justify-content-end">
-    <ul class="navbar-nav navbar-right ml-auto">
+        <ul class="navbar-nav navbar-right ml-auto">
 {#        {% if current_user.is_authenticated %}#}
 {#        <li class="nav-item"><a class="nav-link" href="{{url_for('profile_info') }}">#}
 {#            <img src="{{current_user.profile_pic}}" alt="Google profile pic">{{current_user.name}}#}
 {#        </a></li>#}
 {#        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout </a></li>#}
 {#        {% else %}#}
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up <i class="fa fa-user-plus"></i></a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}" aria-label="Login">Log In <i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>
+                </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url_for('signup') }}">Sign Up</a>
+                    <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>
+                  </div>
+            </li>
 {#        {% endif%}#}
-    </ul>
+        </ul>
     </div>
 </nav>
 
 <div class="container-fluid p-0">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <ul class=flashes>
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                 </ul>
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
             {% endif %}
-        {% endwith %}
+         {% endwith %}
+
     {% block content %}{% endblock %}
 </div>
 

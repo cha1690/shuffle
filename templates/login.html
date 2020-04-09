@@ -2,6 +2,7 @@
 {% block content %}
     <div class="content-section p-4">
         <form method="POST" action="">
+            {{ form.csrf_token }}
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Log In</legend>
@@ -13,7 +14,7 @@
                             {% for error in form.email.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
-                        </div>s
+                        </div>
                     {% else %}
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
