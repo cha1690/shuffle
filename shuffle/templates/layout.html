@@ -30,22 +30,27 @@
     </button>
     <div id="headerNav" class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav navbar-right ml-auto">
-{#        {% if current_user.is_authenticated %}#}
-{#        <li class="nav-item"><a class="nav-link" href="{{url_for('profile_info') }}">#}
-{#            <img src="{{current_user.profile_pic}}" alt="Google profile pic">{{current_user.name}}#}
-{#        </a></li>#}
-{#        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout </a></li>#}
-{#        {% else %}#}
+        {% if current_user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user"></i>
                 </a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{{ url_for('account') }}">Account</a>
+                    <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ url_for('signup') }}">Sign Up</a>
                     <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>
-                  </div>
+                </div>
             </li>
-{#        {% endif%}#}
+        {% endif%}
         </ul>
     </div>
 </nav>
