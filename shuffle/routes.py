@@ -31,7 +31,8 @@ def signup():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         category_data = request.form.getlist('category')
         choices = (','.join(category_data))
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password, category=choices)
+        user = User(username=form.username.data, email=form.email.data,
+                    password=hashed_password, category=choices)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -102,7 +103,7 @@ def account():
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Password Reset Request',
-                  sender='noreply@demo.com',
+                  sender='shuffleapp8@gmail.com',
                   recipients=[user.email])
     msg.body = f'''To reset your password, visit the following link:
                 {url_for('reset_token', token=token, _external=True)}
