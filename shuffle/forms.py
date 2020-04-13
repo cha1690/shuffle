@@ -3,7 +3,17 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from shuffle.models import User
+
+from shuffle import youtube_object
+
+def youtube_video_categories():
+    video_category = youtube_object.videoCategories(
+    ).list(part='snippet', regionCode='IN').execute()
+    results = video_category.get("items", [])
+    videos_categories = []
+    for result in results:
+        videos_categories.append((result["id"], result["snippet"]["title"]))
+    return videos_categories
 
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
@@ -17,10 +27,11 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
-    categories = [('Cooking & Health', 'Cooking & Health'), ('Beauty & Fashion', 'Beauty & Fashion'), ('Music', 'Music'), ('Pets & Animals', 'Pets & Animals'),
-               ('Sports', 'Sports'), ('Short Movies', 'Short Movies'), ('Comedy', 'Comedy'), ('Entertainment', 'Entertainment'),
-               ('News & Politics', 'News & Politics'), ('Education', 'Education'), ('Tech', 'Tech'),
-               ('Travel & Events', 'Travel & Events'), ('Videoblogging', 'Videoblogging')]
+    categories = youtube_video_categories()
+    # categories = [('Cooking & Health', 'Cooking & Health'), ('Beauty & Fashion', 'Beauty & Fashion'), ('Music', 'Music'), ('Pets & Animals', 'Pets & Animals'),
+    #            ('Sports', 'Sports'), ('Short Movies', 'Short Movies'), ('Comedy', 'Comedy'), ('Entertainment', 'Entertainment'),
+    #            ('News & Politics', 'News & Politics'), ('Education', 'Education'), ('Tech', 'Tech'),
+    #            ('Travel & Events', 'Travel & Events'), ('Videoblogging', 'Videoblogging')]
     category = MultiCheckboxField('Category', choices=categories)
     submit = SubmitField('Sign Up')
 
