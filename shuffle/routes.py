@@ -8,7 +8,7 @@ import secrets
 import os
 from PIL import Image
 from flask_mail import Message
-
+from shuffle import youtube_object
 
 @app.route('/')
 def index():
@@ -20,7 +20,18 @@ def category():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    videos = youtube_object.videos().list(
+            part="snippet,contentDetails,statistics",
+            chart="mostPopular",
+            regionCode="IN",
+            videoCategoryId='1'
+        ).execute()
+    results = videos.get("items", [])
+    videos_list=[]
+    for result in results:
+        videos_list.append((result["id"], result["snippet"]["title"]))
+
+    return render_template('home.html', videos_list=videos_list)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

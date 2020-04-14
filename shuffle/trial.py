@@ -9,9 +9,13 @@
 #                        developerKey=DEVELOPER_KEY)
 #
 #
-# def youtube_video_categories():
-#     video_category = youtube_object.videoCategories(
-#     ).list(part='snippet', regionCode='IN').execute()
+# def get_videos():
+#     video_category = youtube_object.videos().list(
+#         part="snippet,contentDetails,statistics",
+#         chart="mostPopular",
+#         regionCode="IN",
+#         videoCategoryId="1"
+#     ).execute()
 #
 #     results = video_category.get("items", [])
 #     videos_categories = []
