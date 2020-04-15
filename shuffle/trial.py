@@ -10,20 +10,20 @@
 #
 #
 # def get_videos():
-#     video_category = youtube_object.videos().list(
-#         part="snippet,contentDetails,statistics",
-#         chart="mostPopular",
-#         regionCode="IN",
-#         videoCategoryId="1"
-#     ).execute()
-#
-#     results = video_category.get("items", [])
-#     videos_categories = []
-#     for result in results:
-#         videos_categories.append((result["id"], result["snippet"]["title"]))
-#
-#     # return videos_categories
-#     print(videos_categories)
+#     categoryID= [2,17,22,]
+#     choices = map(str, categoryID)
+#     playlist=[]
+#     for choice in choices:
+#         video_category = youtube_object.videos().list(
+#             part="snippet,contentDetails,statistics",
+#             chart="mostPopular",
+#             regionCode="IN",
+#             videoCategoryId=choice
+#         ).execute()
+#         results = video_category.get("items", [])
+#         for result in results:
+#             playlist.append(result["id"])
+#     print(playlist)
 #
 # if __name__ == "__main__":
-#     youtube_video_categories()
+#     get_videos()

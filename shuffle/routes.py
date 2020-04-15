@@ -20,19 +20,21 @@ def category():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    index=0
-    videos = youtube_object.videos().list(
+    category_data = current_user.category
+    choices=map(str, category_data)
+    playlist=[]
+    for choice in choices:
+        videos = youtube_object.videos().list(
             part="snippet,contentDetails,statistics",
             chart="mostPopular",
             regionCode="IN",
-            videoCategoryId='1'
+            videoCategoryId=choice
         ).execute()
-    results = videos.get("items", [])
-    videos_list = []
-    for result in results:
-        videos_list.append(result["id"])
-
-    return render_template('home.html', videos_list=videos_list, index=index)
+        results = videos.get("items", [])
+        for result in results:
+            playlist.append(result["id"])
+    print(playlist)
+    return render_template('home.html', playlist=playlist)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

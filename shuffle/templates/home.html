@@ -1,7 +1,7 @@
 {%extends "layout.html"%}
 {%block content%}
     <div id="player"></div>
-    <button id='change-video' class='btn btn-secondary btn-lg btn-block'>Change Video</button>
+    <button class='shuffle' class='btn btn-secondary btn-lg btn-block'>Change Video</button>
 <script>
       var tag = document.createElement('script');
 
@@ -12,11 +12,11 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-            height: '390',
-            width: '640',
+            height: '460',
+            width: '890',
             videoId: 'M7lc1UVf-VE',
-            playerVars: { 'autoplay': 1, 'controls': 0,
-            list: '{{ videos_list }}'
+            playerVars: { 'autoplay': 1,
+            list: '{{ playlist }}'
            },
             events: {
                 'onReady': onPlayerReady,
@@ -37,8 +37,8 @@
         }
     }
 
-    $(".button").on("click", function() {
-        player.cuePlaylist('{{ videos_list }}', 0, "default");
+    $(".shuffle").on("click", function() {
+        player.cuePlaylist('{{ playlist }}', 0, "default");
     });
     </script>
 
