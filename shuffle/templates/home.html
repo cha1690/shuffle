@@ -1,24 +1,45 @@
 {%extends "layout.html"%}
 {%block content%}
-    <div class="embed-responsive embed-responsive-16by9">
-        <div class="actualyoutube">
-            <iframe width="560" height="300"
-                    src="http://www.youtube.com/embed/GOFQN8otiYs"
-                    frameborder="0" allowfullscreen>
-            </iframe>
-        </div>
-    </div>
-    <button id="change-video" class='btn btn-secondary btn-lg btn-block'>Change Video</button>
+    <div id="player"></div>
+    <button id='change-video' class='btn btn-secondary btn-lg btn-block'>Change Video</button>
 <script>
-    document.getElementById("change-video").onclick = function(){
-       {% for item in videos_list %}
-        var videoid = {{ item[0] }};
-        $(".actualyoutube iframe").remove();
-        $('<iframe width="560" height="300" frameborder="0" allowfullscreen></iframe>')
-            .attr("src", "http://www.youtube.com/embed/" + videoid)
-            .appendTo(".actualyoutube");
-    {% endfor %}
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: 'M7lc1UVf-VE',
+            playerVars: { 'autoplay': 1, 'controls': 0,
+            list: '{{ videos_list }}'
+           },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+      }
+
+     var playerReady = false;
+    function onPlayerReady(event) {
+        playerReady = true;
     }
-</script>
+
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+            alert('done');
+
+        }
+    }
+
+    $(".button").on("click", function() {
+        player.cuePlaylist('{{ videos_list }}', 0, "default");
+    });
+    </script>
 
 {%endblock%}

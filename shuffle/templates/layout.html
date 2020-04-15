@@ -56,16 +56,15 @@
 </nav>
 
 <div class="container-fluid p-0">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
                 <div class="alert alert-{{ category }}">
                   {{ message }}
                 </div>
-              {% endfor %}
-            {% endif %}
-         {% endwith %}
-
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     {% block content %}{% endblock %}
 </div>
 
