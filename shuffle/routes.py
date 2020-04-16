@@ -21,15 +21,19 @@ def category():
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     category_data = current_user.category
-    choices=map(str, category_data)
+    choices=category_data.split(',')
     playlist=[]
     for choice in choices:
-        videos = youtube_object.videos().list(
-            part="snippet,contentDetails,statistics",
-            chart="mostPopular",
-            regionCode="IN",
-            videoCategoryId=choice
-        ).execute()
+        try:
+            videos = youtube_object.videos().list(
+                part="snippet,contentDetails,statistics",
+                chart="mostPopular",
+                regionCode="IN",
+                videoCategoryId=choice
+            ).execute()
+        except:
+            # print(choice)
+            continue
         results = videos.get("items", [])
         for result in results:
             playlist.append(result["id"])

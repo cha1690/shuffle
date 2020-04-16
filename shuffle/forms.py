@@ -28,7 +28,6 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     categories = youtube_video_categories()
-    print(categories)
     category = MultiCheckboxField('Category', choices=categories)
     submit = SubmitField('Sign Up')
 

@@ -27,3 +27,12 @@
 #
 # if __name__ == "__main__":
 #     get_videos()
+
+
+$('#next').on('click', function () {
+            player.nextVideo()
+        });
+
+        $('#prev').on('click', function () {
+            player.previousVideo()
+        });
