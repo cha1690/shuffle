@@ -1,16 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-{#    <style>#}
-{#        iframe#}
-{#        {width: 100%; height: 350px;}#}
-{#    </style>#}
-    <div onload="onYouTubeIframeAPIReady()" name="ytplayer" id="player"></div>
+    <style>
+    .video {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 650px;
+    }
+    </style>
+
+    <div onload="onYouTubeIframeAPIReady()" name="ytplayer" id="player" class="video"></div>
 
     <script>
-        var MyVideos = '{{ playlist }}';
-        console.log(MyVideos)
+        var MyVideos = {{ playlist|safe }};
         var tag = document.createElement('script');
-
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -19,6 +23,8 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
+                height: '720',
+                width: '1280',
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange

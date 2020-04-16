@@ -32,12 +32,10 @@ def home():
                 videoCategoryId=choice
             ).execute()
         except:
-            # print(choice)
             continue
         results = videos.get("items", [])
         for result in results:
             playlist.append(result["id"])
-    print(playlist)
     return render_template('home.html', playlist=playlist)
 
 @app.route('/signup', methods=['GET', 'POST'])
