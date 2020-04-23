@@ -15,6 +15,9 @@ app.config.update(SECRET_KEY=os.urandom(24))
 app.config['CSRF_ENABLED'] = True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+# SQLALCHEMY_DATABASE_URI = ‘mysql+pymysql://shuffle:shuffle@database-1.cib9rogl3fhh.ap-south-1.rds.amazonaws.com/<db_url>’
+
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
