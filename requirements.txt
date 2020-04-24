@@ -115,6 +115,8 @@ pycodestyle==2.5.0
 pycosat==0.6.3
 pycparser==2.19
 pycrypto==2.6.1
+flask-heroku==0.1.9
+psycopg2-binary==2.8.5
 pyOpenSSL==19.0.0
 pyparsing==2.4.2
 pyrsistent==0.15.4

@@ -4,17 +4,23 @@ from flask_bcrypt import Bcrypt
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_heroku import Heroku
 
+import psycopg2
 import os
 from apiclient.discovery import build
 
 app = Flask(__name__)
 csrf = CSRFProtect(app)
+heroku = Heroku(app)
 
 app.config.update(SECRET_KEY=os.urandom(24))
 app.config['CSRF_ENABLED'] = True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # SQLALCHEMY_DATABASE_URI = ‘mysql+pymysql://shuffle:shuffle@database-1.cib9rogl3fhh.ap-south-1.rds.amazonaws.com/<db_url>’
 
