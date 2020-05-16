@@ -9,10 +9,15 @@ hr {
     color: #616161 !important;
 }
 
+ .hero{
+   height: auto;
+ }
+
  /*Jumbotron (hero)*/
 .jumbotron {
   position: relative;
   background: url('/static/img/cover.jpg') no-repeat bottom center/cover;
+  height: 700px;
 }
 .jumbotron:before {
   position: absolute;
