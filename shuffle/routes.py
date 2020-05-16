@@ -36,6 +36,7 @@ def home():
         results = videos.get("items", [])
         for result in results:
             playlist.append(result["id"])
+    print(request.form)
     return render_template('home.html', playlist=playlist)
 
 @app.route('/signup', methods=['GET', 'POST'])
