@@ -13,7 +13,7 @@ from apiclient.discovery import build
 app = Flask(__name__)
 csrf = CSRFProtect(app)
 heroku = Heroku(app)
-
+csrf.init_app(app)
 app.config.update(SECRET_KEY=os.urandom(24))
 app.config['CSRF_ENABLED'] = True
 
@@ -25,6 +25,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+login_manager.session_protection = 'basic'
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
