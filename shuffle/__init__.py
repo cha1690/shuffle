@@ -17,7 +17,8 @@ heroku = Heroku(app)
 app.config.update(SECRET_KEY=os.urandom(24))
 app.config['CSRF_ENABLED'] = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kuyshutiszlleb:e070539f2ea1dc2c6a6424025661ca7e6a76c8a3d465834fe196ab0da0409b76@ec2-184-72-235-80.compute-1.amazonaws.com:5432/da40pli2qnlfj2'
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
