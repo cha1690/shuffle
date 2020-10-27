@@ -21,7 +21,7 @@ chardet==3.0.4
 Click==7.0
 cloudpickle==1.2.2
 contextlib2==0.6.0
-cryptography==2.7
+cryptography==3.2
 cycler==0.10.0
 Cython==0.29.13
 dask==2.5.2
