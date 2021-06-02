@@ -164,7 +164,7 @@ sympy==1.4
 toolz==0.10.0
 unicodecsv==0.14.1
 uritemplate==3.0.1
-urllib3==1.24.2
+urllib3==1.26.5
 wcwidth==0.1.7
 webencodings==0.5.1
 Werkzeug==0.16.0
