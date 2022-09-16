@@ -42,7 +42,7 @@ Flask-Mail==0.9.1
 Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.14.3
 flask-script==2.0.6
-Mako==1.1.2
+Mako==1.2.2
 alembic==1.4.2
 flask-migrate==2.5.3
 python-editor==1.0.4
